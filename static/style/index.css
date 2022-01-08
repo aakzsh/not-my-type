@@ -1,0 +1,12 @@
+body{
+    background-color:blueviolet;
+    color: wheat;
+}
+
+.baamzi{
+    display: flex;
+    /* width: 100vw; */
+    height: 95vh;
+    justify-content: center;
+    align-items: center;
+}
