@@ -24,14 +24,20 @@ def create(code):
     # print(lol)
     return render_template('create.html', code=code)
 
+@app.route('/create/<code>,<email>')
+def createe(code, email):
+    send(email)
+    return redirect('/create/'+code)
+    # return render_template('create.html', code=code)
+
 
 @app.route('/play')
 def play():
     return render_template('play.html')
 
-@app.route('/results')
-def results():
-    return render_template('results.html')
+@app.route('/results/<sim>,<wpm>')
+def results(sim, wpm):
+    return render_template('results.html', sim=round(float(sim)*100, 3), wpm=round(float(wpm), 3))
 
 if __name__ == "__main__":
     app.run(debug=True)

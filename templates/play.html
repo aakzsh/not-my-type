@@ -9,6 +9,7 @@
     <title>play - not your type</title>
 </head>
 <body>
+    <script src="//unpkg.com/string-similarity/umd/string-similarity.min.js"></script>
    <div style="display: flex; justify-content: space-between; align-items: center;">
     <p class="header">not my type</p>
     <div class="timer">
@@ -25,10 +26,12 @@
             <p>All life's battles teach us something, even those we lose. When you grow up, you'll discover that you have defended lies, deceived yourself, or suffered foolishness. If you're a good warrior you will not blame yourself for this, but neither will you allow your mistakes to repeat themselves. </p>
         </div>
         <div class="type">
-            <textarea name="" id="" placeholder="Type the above text...." cols="30" rows="10"></textarea>
+            <textarea name="" id="cont" placeholder="Type the above text...." cols="30" rows="10"></textarea>
     
         </div>
     </center>
+
+    <button onclick="btnclick()">submit</button>
 
  
 <script>
@@ -37,6 +40,13 @@ var dia=document.getElementById('lol');
 var count=0;
 var lmao=0;
 var x = 30;
+var msg = "All life's battles teach us something, even those we lose. When you grow up, you'll discover that you have defended lies, deceived yourself, or suffered foolishness. If you're a good warrior you will not blame yourself for this, but neither will you allow your mistakes to repeat themselves.";
+
+function btnclick(){
+    var typed = document.getElementById('cont').value
+    var sim = stringSimilarity.compareTwoStrings(msg, typed);
+     window.location.href='/results/'+sim+','+(typed.split(" ").length/(30-x)*60);
+}
 
 window.onload = function(){
     timelol=setInterval(function(){
@@ -44,8 +54,9 @@ window.onload = function(){
       document.getElementById('time').innerHTML="00:"+x;
       x-=1;
       if(x==0){
-          
-          window.location.href='/results'
+        var typed = document.getElementById('cont').value
+        var sim = stringSimilarity.compareTwoStrings(msg,typed);
+          window.location.href='/results/'+sim+','+(typed.split(" ").length*2);
       }
  
   },1000);
