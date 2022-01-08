@@ -45,25 +45,50 @@ font-size: 4rem;
     font-weight: 200;
     font-size: 1.5rem;
 }
-button{
-   width: 15rem;
-   height: 3rem;
-   font-size: large;
-   border-radius: 10px;
-   font-weight: 600;
+input{
+    height: 1.7rem;
+    padding-left: 1rem;
+}
+
+.b{
+    width: 4rem;
+    height: 1.7rem;
+    border-radius: 5px;
+    border: rgba(233, 98, 64, 1);
+    margin-left: 1rem;
+    color: white;
+    background-color: rgba(233, 98, 64, 1);
 }
 
 .b1{
-    background: rgba(233, 98, 64, 1);
-
+    width: 15rem;
+    height: 3rem;
+    font-size: large;
+    border-radius: 10px;
+    font-weight: 600;
+    background-image: linear-gradient(to right, rgba(169, 106, 219, 1) , rgba(233, 99, 64, 1));
+    /* background: rgba(233, 98, 64, 1); */
+margin-top: 1rem;
     color: white;
     border: rgba(233, 98, 64, 1);
     margin-right: 2rem;
 }
 
-.b2{   background: white;
 
-    color: rgba(233, 98, 64, 1);
-    border: white;
+.roominfo{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgba(25, 32, 67, 1);
+    /* ; */
+    min-height: 10rem;
+}
+
+.inroom{
+  color: rgba(169, 169, 174, 1);
 
 }
+
+.roomcode{
+    color: rgba(169, 169, 174, 1);
+}
+

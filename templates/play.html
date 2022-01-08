@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://media.discordapp.net/attachments/873911486488121344/929328632848064512/Untitled_design_1_1.png" type="image/x-icon">
+    <link rel="stylesheet" href="../static/style/play.css">
+    <title>play - not your type</title>
+</head>
+<body>
+   <div style="display: flex; justify-content: space-between; align-items: center;">
+    <p class="header">not my type</p>
+    <div class="timer">
+        <img src="../static/images/timer.svg" alt="">
+        <p id="time">00:30</p>
+    </div>
+   </div>
+    <center>
+        <div class="timeline">
+<img src="../static/images/panda1.png"  id='lol' alt="" style="height: 10rem; margin-left: 0;">
+        </div>
+
+        <div class="text">
+            <p>All life's battles teach us something, even those we lose. When you grow up, you'll discover that you have defended lies, deceived yourself, or suffered foolishness. If you're a good warrior you will not blame yourself for this, but neither will you allow your mistakes to repeat themselves. </p>
+        </div>
+        <div class="type">
+            <textarea name="" id="" placeholder="Type the above text...." cols="30" rows="10"></textarea>
+    
+        </div>
+    </center>
+
+ 
+<script>
+
+var dia=document.getElementById('lol');
+var count=0;
+var lmao=0;
+var x = 30;
+
+window.onload = function(){
+    timelol=setInterval(function(){
+      
+      document.getElementById('time').innerHTML="00:"+x;
+      x-=1;
+      if(x==0){
+          
+          window.location.href='/results'
+      }
+ 
+  },1000);
+  time=setInterval(function(){
+      
+ lmao+=1
+    count+=10;
+    if(count>=3000){
+      count-=10;
+      clearInterval(time);
+    }
+    if(lmao ==80){
+        document.getElementById('lol').src = "../static/images/panda2.png"
+    }
+    if(lmao==220){
+        document.getElementById('lol').src = "../static/images/panda3.png"
+    }
+    
+    dia.style.marginLeft=count/37+"vw";
+  },100);
+}
+</script>
+    
+</body>
+</html>
