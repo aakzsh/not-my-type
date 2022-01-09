@@ -4,7 +4,7 @@ import string
 import base64
 import os
 
-from flask.typing import StatusCode
+# from flask.typing import StatusCode
 from twiliosend import send
 
 
@@ -23,6 +23,13 @@ def create(code):
     # lol = lol[0:int(len(lol)/2)]
     # print(lol)
     return render_template('create.html', code=code)
+
+@app.route('/join/<code>')
+def join(code):
+    # lol = str(base64.b64decode(name))[2:-1]
+    # lol = lol[0:int(len(lol)/2)]
+    # print(lol)
+    return render_template('join.html', code=code)
 
 @app.route('/create/<code>,<email>')
 def createe(code, email):
