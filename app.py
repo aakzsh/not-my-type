@@ -42,7 +42,7 @@ def create(code,email):
     }
 
     db.collection(u'rooms').document(code).set(data)
-    return render_template('create.html', code=code)
+    return render_template('create.html', code=code, email = email)
 
 @app.route('/join/<code>,<email>')
 def join(code,email):
@@ -70,9 +70,9 @@ def createe(code, email):
     # return render_template('create.html', code=code)
 
 
-@app.route('/play')
-def play():
-    return render_template('play.html')
+@app.route('/play/<code>,<email>')
+def play(code, email):
+    return render_template('play.html', code=code, email=email)
 
 @app.route('/results/<sim>,<wpm>')
 def results(sim, wpm):
