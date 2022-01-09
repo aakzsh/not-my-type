@@ -8,6 +8,9 @@
     <link rel="shortcut icon" href="https://media.discordapp.net/attachments/873911486488121344/929328632848064512/Untitled_design_1_1.png" type="image/x-icon">
     <link rel="stylesheet" href="../static/style/create.css">
     <title>create room - not my type</title>
+      <!-- The core Firebase JS SDK is always required and must be listed first -->
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 </head>
 <body>
     <p class="header">not my type</p>
@@ -19,7 +22,7 @@
         <button class="b" onclick="window.location.href='/joinn/{{code}},{{email}}'">join</button>
             <div class="roominfo">
                 <p style="font-size:xx-large; margin-top: -0.7rem; margin-bottom: -0.7rem;">Currently in the room</p>
-                <p class="inroom">aakash (aakash@gmail.com)<br>frooti (frooti@gmail.com)</p>
+                <div class="content-room"></div>
             </div>
         <button class="b1" onclick="window.location.href='/play'">Start Playing</button>
         
@@ -29,5 +32,33 @@
             <img src="../static/images/panda.svg" class="panda" alt="">
         </div>
     </div>
+    <script src="../static/firebase.js"></script>
+    <script>
+            const fb =  firebase.initializeApp(firebaseConfig);
+
+            const db = fb.firestore()
+            const content = document.querySelector(".content-room")
+
+            const code = '{{code}}'
+            console.log(code)
+
+            db.collection('rooms').doc(code) .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+
+        var mem = doc.data()['members']
+        content.innerHTML = ``
+        for(var i = 0; i < mem.length; i++ ){
+            console.log(mem[i]['email'])
+            content.innerHTML += `
+        
+        <p >${mem[i]['email']}</p>
+        
+        `            
+        }
+        
+
+
+    });
+    </script>
     </body>
 </html>
