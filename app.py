@@ -12,7 +12,7 @@ firebase_admin.initialize_app(cred)
 
 # from flask.typing import StatusCode
 
-from twiliosend import send
+from twiliosend import getResults, send
 
 
 app = Flask(__name__)
@@ -65,18 +65,31 @@ def joinn(code,email):
 
 @app.route('/create/<code>,<email>')
 def createe(code, email):
-    send(email)
-    return redirect('/create/'+code)
+    send(email, code)
+    return redirect(f'/create/{code}')
     # return render_template('create.html', code=code)
 
+@app.route('/create/<code>')
+def lol(code):
+    # f= open(f"../static/{code}.txt","a+")
+    return render_template('create.html', code=code)
 
 @app.route('/play/<code>,<email>')
 def play(code, email):
     return render_template('play.html', code=code, email=email)
 
+@app.route('/sendsms')
+def sendsms():
+    return render_template('sendsms.html')
+
 @app.route('/results/<sim>,<wpm>')
 def results(sim, wpm):
     return render_template('results.html', sim=round(float(sim)*100, 3), wpm=round(float(wpm), 3))
+
+@app.route('/sendconf/<code>,<mob>')
+def sendconf(code, mob):
+    getResults(mob)
+    return render_template('conf.html')
 
 if __name__ == "__main__":
     app.run(debug=True)
