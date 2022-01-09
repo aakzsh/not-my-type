@@ -83,14 +83,14 @@ def play(code, email):
 def sendsms():
     return render_template('sendsms.html')
 
-@app.route('/results/<sim>,<wpm>,<email>')
-def results(sim, wpm, email):
+@app.route('/results/<sim>,<wpm>,<email>,<code>')
+def results(sim, wpm, email,code):
     db = firestore.client()
     db.collection('leaderboard').document(email).set({
             'accuracy' : round(float(sim)*100, 3),
             'wpm' : round(float(wpm), 3)
     })
-    return render_template('results.html', sim=round(float(sim)*100, 3), wpm=round(float(wpm), 3))
+    return render_template('results.html', sim=round(float(sim)*100, 3), wpm=round(float(wpm), 3), code = code)
 
 @app.route('/sendconf/<code>,<mob>')
 def sendconf(code, mob):

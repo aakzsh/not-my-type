@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="https://media.discordapp.net/attachments/873911486488121344/929328632848064512/Untitled_design_1_1.png" type="image/x-icon">
     <link rel="stylesheet" href="../static/style/results.css">
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <title>Results - not your type</title>
 </head>
 <body>
@@ -15,7 +18,10 @@
         <div style="width: 40rem;"><p class="title">YOUR ACCURACY: {{sim}}% !!<br>WORDS PER MINUTE: {{wpm}}</p>
             <div style="min-height: 4rem;background-color:rgba(38, 45, 85, 1); padding: 1rem;">
                 <p style="font-size: 1.7rem;">Leaderboard</p>
-                <p>1. aakash@gmail.com [{{sim}}%]<br>2. frooti@gmail.com [50%]</p>
+                <div class="content-results">
+
+                </div>
+                <!-- <p>1. aakash@gmail.com [{{sim}}%]<br>2. frooti@gmail.com [50%]</p> -->
 
             </div>
             <button onclick="window.location.href='/sendsms'">Get results via sms</button>
@@ -24,6 +30,44 @@
             <img src="../static/images/panda.svg" class="panda" alt="">
         </div>
     </div>
-    
+    <script src="../static/firebase.js"></script>
+    <script>
+        const fb =  firebase.initializeApp(firebaseConfig);
+
+        const db = fb.firestore()
+        const content = document.querySelector(".content-results")
+
+        const code = '{{code}}'
+
+        db.collection('rooms').doc(code) .onSnapshot((doc) => {
+        console.log("Current data: ", doc.data());
+
+        var mem = doc.data()['members']
+        console.log(mem)
+     
+        for(var i = 0; i < mem.length; i++ ){
+            console.log("------")
+            var m = mem[i]['email']
+            db.collection('leaderboard').doc(mem[i]['email']).onSnapshot((d) => {
+                console.log(mem[i], "sim=", d.data()['accuracy'])
+                // const m = mem[i]['email']
+                content.innerHTML = `
+
+                <p>${m} ${d.data()['accuracy']} </p>
+                `
+            })
+
+            
+        
+        
+        
+                  
+        }
+        
+
+
+    });
+
+    </script>
 </body>
 </html>
