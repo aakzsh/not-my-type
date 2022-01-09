@@ -14,7 +14,9 @@
     <div class="content">
         <div style="width: 40rem;"><p class="title">Fastest Fingers First</p>
         <p class="subtitle">compete and see if you're the fastest typeracer in your squad, themed up with amazing musical vibes</p>
-        <button class="b1" onclick="window.location.href='/create/{{code}}'">Create a room</button>
+        <input type="text" style="padding: 0.5rem 1rem; width: 70%;" placeholder="Enter your email" id="email">
+        <br><br>
+        <button class="b1" onclick="window.location.href='/create-room/{{code}},'+document.getElementById('email').value">Create a room</button>
         <button class="b2" onclick="window.location.href='/play'">Play solo</button>
         </div>
         <div>

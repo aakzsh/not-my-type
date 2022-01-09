@@ -67,3 +67,8 @@ button{
     border: white;
 
 }
+
+input{
+    
+    padding: 1rem 0.8rem;
+}
