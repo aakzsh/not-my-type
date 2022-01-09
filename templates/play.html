@@ -124,7 +124,7 @@
      
    </div>
    <script src="../static/play.js"></script>
-
+<script src="../static/firebase.js"></script>
 <script>
 
 
@@ -157,8 +157,9 @@ window.onload = function(){
         const db = fb.firestore()
 
         
+        
 
-        window.location.href='/results/'+sim+','+(typed.split(" ").length*2);
+        window.location.href='/results/'+sim+','+(typed.split(" ").length*2)+','+email;
       }
  
   },1000);
