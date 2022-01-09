@@ -63,10 +63,10 @@ def joinn(code,email):
 
     return render_template('join.html', code=code)
 
-@app.route('/create/<code>,<email>')
-def createe(code, email):
+@app.route('/create/<code>,<email>,<emaill>')
+def createe(code, email, emaill):
     send(email, code)
-    return redirect(f'/create/{code}')
+    return redirect(f'/create/{code},{emaill}')
     # return render_template('create.html', code=code)
 
 @app.route('/create/<code>')
